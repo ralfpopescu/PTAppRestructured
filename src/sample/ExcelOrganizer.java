@@ -19,14 +19,13 @@ public class ExcelOrganizer
     public ExcelOrganizer(){
 
     }
-    public void handleSheet() throws Exception
+    public boolean handleSheet(File file) throws Exception
     {
         //MOD, Server, Bartender, Barback, Busser, Host, Food Runner, Parking, Security, Maintenance, Sushi, Kitchen
         //Dishwasher, Banquet Bartender, Banquet Cook, Banquet Server, Banquet Dishwasher, Basecamp, Event Sales, Inventory
 
 
-        FileInputStream fis = new FileInputStream(
-                new File("/Users/ralfpopescu/ParkTavernWhenIWork/src/schedule.xlsx"));
+        FileInputStream fis = new FileInputStream(file);
 
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet spreadsheet = workbook.getSheetAt(0);
@@ -42,5 +41,7 @@ public class ExcelOrganizer
         }
         sheetCreator.makeSheet();
         fis.close();
+
+        return true;
     }
 }

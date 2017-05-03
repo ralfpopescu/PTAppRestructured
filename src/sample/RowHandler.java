@@ -152,13 +152,16 @@ public class RowHandler {
                     if(celljob.equals("n")){
                         break;
                     }
+
+
+
                     if(!celljob.equals(job)) {
                         System.out.println(job + " " + celljob);
                         System.out.println("NOMATCH");
                         if(first){
                             first = false;
                         } else {
-                            cell.setCellValue("AY");
+                            cell.setCellValue(" ");
                         }
                     }
 

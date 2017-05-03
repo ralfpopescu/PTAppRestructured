@@ -5,15 +5,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("parktavern.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("parktavern.fxml"));
+        Parent root = loader.load();
+        Controller controller = loader.getController();
+        controller.setStage(primaryStage);
+        primaryStage.setTitle("Park Tavern Schedule Maker");
+        primaryStage.setScene(new Scene(root, 250, 310));
         primaryStage.show();
+
+        primaryStage.getIcons().add(
+                new Image(Main.class.getResourceAsStream( "parktavernlogo.png" )));
+
     }
 
 

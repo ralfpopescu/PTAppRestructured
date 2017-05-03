@@ -60,6 +60,13 @@ public class SheetCreator {
         copyRow(firstRow, first, true);
         rowNum++;
 
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Cell startingDateCell = firstRow.getCell(1);
+        String firstDate = sdf.format(startingDateCell.getDateCellValue());
+        String sheetTitle = convertDate(firstDate);
+
+
+
         for(ArrayList<XSSFRow> job: all){
             String jobString = rowHandler.getJobFromList(job);
             XSSFRow jobTitle = spreadsheet.createRow(rowNum);
@@ -68,7 +75,8 @@ public class SheetCreator {
 
             XSSFCellStyle style = workbook.createCellStyle();
             style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
-            style.setFillPattern(XSSFCellStyle.SPARSE_DOTS);
+            style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+            style.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
             titleCell.setCellStyle(style);
 
             rowNum++;
@@ -87,7 +95,7 @@ public class SheetCreator {
         //Write the workbook in file system
         try {
             FileOutputStream out = new FileOutputStream(
-                    new File("Writesheet.xlsx"));
+                    new File(sheetTitle + ".xlsx"));
             try {
                 workbook.write(out);
                 out.close();
@@ -157,18 +165,30 @@ public class SheetCreator {
                         r2cell.setCellValue(" ");
                     } else {
                         r2cell.setCellValue(cell.getStringCellValue());
+
                     }
 
                     String celljob = parser.getJob(cell.getStringCellValue());
+
+
+                    String[] cut = cell.getStringCellValue().split("-");
+                    if(cut.length > 1) {
+                        String[] cutAgain = cut[1].split("\\r?\\n");
+                        String cutString = cut[0] + "-" + cutAgain[0];
+                        r2cell.setCellValue(cutString);
+                    }
+
                     //System.out.println(job + " " + celljob);
                     if(celljob.equals("n")){
                         break;
                     }
+
+
                     if(!celljob.equals(job)) {
                         System.out.println(job + " " + celljob);
                         System.out.println("!!!!");
 
-                            r2cell.setCellValue("AY");
+                            r2cell.setCellValue(" ");
                     }
                     break;
 
@@ -178,5 +198,10 @@ public class SheetCreator {
                     r2cell2.setCellValue(" ");
             }
         }
+    }
+
+    public String convertDate(String date){
+        String[] split = date.split("/");
+        return "ScheduleStarting_" + split[0] + "." + split[1];
     }
 }
