@@ -28,7 +28,12 @@ public class Controller {
         try {
             success = excelOrganizer.handleSheet(file);
         } catch (Exception e){
-            e.printStackTrace();
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(":(");
+            alert.setHeaderText("Oops!");
+            alert.setContentText("Something went wrong.");
+
+            alert.showAndWait();
         }
 
 

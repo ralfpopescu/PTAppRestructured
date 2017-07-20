@@ -20,6 +20,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import java.text.SimpleDateFormat;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 
 
 public class SheetCreator {
@@ -28,6 +29,7 @@ public class SheetCreator {
     Parser parser = new Parser();
     XSSFRow firstRow;
     CellStyle cellStyle;
+    //XSSFWorkbook workbook;
 
     public SheetCreator(RowHandler rh, XSSFRow fr){
         rowHandler = rh;
@@ -40,8 +42,6 @@ public class SheetCreator {
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
                 "Schedule");
-
-
 
         CellCopyPolicy ccp = new CellCopyPolicy();
         ccp.setCondenseRows(true);
@@ -57,8 +57,9 @@ public class SheetCreator {
         int rowNum = 0;
 
         XSSFRow first = spreadsheet.createRow(rowNum);
-        copyRow(firstRow, first, true);
+        copyRow(firstRow, first, true, workbook);
         rowNum++;
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         Cell startingDateCell = firstRow.getCell(1);
@@ -67,17 +68,29 @@ public class SheetCreator {
 
 
 
+
         for(ArrayList<XSSFRow> job: all){
             String jobString = rowHandler.getJobFromList(job);
+            String titleJobString = parser.reverse(jobString);
             XSSFRow jobTitle = spreadsheet.createRow(rowNum);
             Cell titleCell = jobTitle.createCell(0);
-            titleCell.setCellValue(jobString);
+
+            titleCell.setCellValue(titleJobString);
 
             XSSFCellStyle style = workbook.createCellStyle();
-            style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
-            style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+            XSSFFont font = workbook.createFont();
+            font.setBold(true);
+            style.setFillBackgroundColor(IndexedColors.GREEN.getIndex());
+            style.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+            style.setAlignment(CellStyle.ALIGN_CENTER);
             style.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
+            style.setFont(font);
             titleCell.setCellStyle(style);
+
+            for (int i = 1; i < 8; i ++){
+                Cell fillerCell = jobTitle.createCell(i);
+                fillerCell.setCellStyle(style);
+            }
 
             rowNum++;
 
@@ -108,14 +121,26 @@ public class SheetCreator {
             System.out.println(
                     "shit");
 
-    }
+        }
     }
 
 
-    public void copyRow(XSSFRow r1, XSSFRow r2, boolean flag){ //flag for date row
+    public void copyRow(XSSFRow r1, XSSFRow r2, boolean flag, XSSFWorkbook workbook){ //flag for date row
         Iterator<Cell> cellIterator = r1.cellIterator();
         int cellid = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String[] weekdays = {"THURS","FRI","SAT","SUN","MON","TUES","WED"};
+        int dateCount = 0;
+
+        XSSFCellStyle dateStyle = workbook.createCellStyle();
+        XSSFFont datefont = workbook.createFont();
+        datefont.setBold(true);
+        datefont.setColor(IndexedColors.WHITE.getIndex());
+        dateStyle.setFillBackgroundColor(IndexedColors.BLACK.getIndex());
+        dateStyle.setFillForegroundColor(IndexedColors.BLACK.getIndex());
+        //dateStyle.setAlignment(CellStyle.ALIGN_CENTER);
+        dateStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
+        dateStyle.setFont(datefont);
 
         while (cellIterator.hasNext())
         {
@@ -127,17 +152,29 @@ public class SheetCreator {
                         Cell r2cellnum = r2.createCell(cellid);
                         cellid++;
                         String cellValue = sdf.format(cell.getDateCellValue());
+                        String[] split = cellValue.split("/");
+                        cellValue = weekdays[dateCount] + " " + split[0] + "/" + split[1];
+                        if(dateCount < 7) {
+                            dateCount++;
+                        }
                         r2cellnum.setCellValue(cellValue);
+
+
+
+                        r2cellnum.setCellStyle(dateStyle);
                     }
                     break;
                 case Cell.CELL_TYPE_STRING:
                     Cell r2cell = r2.createCell(cellid);
                     cellid++;
-                    r2cell.setCellValue(cell.getStringCellValue());
-
+                    if(!cell.getStringCellValue().contains("Total")) {
+                        r2cell.setCellValue(cell.getStringCellValue());
+                        r2cell.setCellStyle(dateStyle);
+                    }
                     break;
             }
         }
+
     }
 
     public void copyRowWithJobFilter(XSSFRow r1, XSSFRow r2, String job){
@@ -153,9 +190,10 @@ public class SheetCreator {
             switch (cell.getCellType())
             {
                 case Cell.CELL_TYPE_NUMERIC:
-                    Cell r2cellnum = r2.createCell(cellid);
+
+                    //Cell r2cellnum = r2.createCell(cellid);
                     cellid++;
-                    r2cellnum.setCellValue(cell.getNumericCellValue());
+                    //r2cellnum.setCellValue(cell.getNumericCellValue());
                     break;
 
                 case Cell.CELL_TYPE_STRING:
@@ -185,10 +223,8 @@ public class SheetCreator {
 
 
                     if(!celljob.equals(job)) {
-                        System.out.println(job + " " + celljob);
-                        System.out.println("!!!!");
 
-                            r2cell.setCellValue(" ");
+                        r2cell.setCellValue(" ");
                     }
                     break;
 

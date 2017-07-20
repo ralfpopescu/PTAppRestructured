@@ -97,5 +97,69 @@ public class Parser {
         return "n";
     }
 
+    public String reverse(String job){
+        if(job.equals("MOD")){
+            return "MOD";
+        }
+        if(job.equals("Server")){
+            return "Server";
+        }
+        if(job.equals("Bartender")){
+            return "Bartender";
+        }
+        if(job.equals("Barback")){
+            return "Barback";
+        }
+        if(job.equals("Busser")){
+            return "Busser";
+        }
+        if(job.equals("Host")){
+            return "Host";
+        }
+        if(job.equals("FoodRunner")){
+            return "Food Runner";
+        }
+        if(job.equals("Parking")){
+            return "Parking";
+        }
+        if(job.equals("Security")){
+            return "Security";
+        }
+        if(job.equals("Maintenance")){
+            return "Maintenance";
+        }
+        if(job.equals("Sushi")){
+            return "Sushi";
+        }
+        if(job.equals("Kitchen")){
+            return "Kitchen";
+        }
+        if(job.equals("Dishwasher")){
+            return "Dishwasher";
+        }
+        if(job.equals("BanquetBartender")){
+            return "Banquet Bartender";
+        }
+        if(job.equals("BanquetCook")){
+            return "Banquet Cook";
+        }
+        if(job.equals("BanquetServer")){
+            return "Banquet Server";
+        }
+        if(job.equals("BanquetDishwasher")){
+            return "Banquet Dishwasher";
+        }
+        if(job.equals("Basecamp")){
+            return "Basecamp";
+        }
+        if(job.equals("EventSales")){
+            return "Event Sales";
+        }
+        if(job.equals("Inventory")){
+            return "Inventory";
+        }
+        return "n";
+    }
+
 
 }

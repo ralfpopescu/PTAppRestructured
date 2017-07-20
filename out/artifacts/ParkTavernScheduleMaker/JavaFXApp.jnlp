@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JavaFXApp.jnlp">
+  <information>
+    <title>JavaFXApp</title>
+    <vendor>Unknown</vendor>
+    <description>JavaFXApp</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="JavaFXApp.jar" size="15935365" download="eager" />
+    <jar href="ParkTavernScheduleMaker.jar" size="15927836" download="eager" />
+    <jar href="sample/poi-3.16/lib/commons-codec-1.10.jar" size="284184" download="eager" />
+    <jar href="sample/poi-3.16/lib/commons-collections4-4.1.jar" size="751238" download="eager" />
+    <jar href="sample/poi-3.16/lib/commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="sample/poi-3.16/lib/junit-4.12.jar" size="314932" download="eager" />
+    <jar href="sample/poi-3.16/lib/log4j-1.2.17.jar" size="489884" download="eager" />
+    <jar href="sample/poi-3.16/ooxml-lib/curvesapi-1.04.jar" size="98365" download="eager" />
+    <jar href="sample/poi-3.16/ooxml-lib/xmlbeans-2.6.0.jar" size="2730866" download="eager" />
+    <jar href="sample/poi-3.16/poi-3.16.jar" size="2679259" download="eager" />
+    <jar href="sample/poi-3.16/poi-examples-3.16.jar" size="369786" download="eager" />
+    <jar href="sample/poi-3.16/poi-excelant-3.16.jar" size="31218" download="eager" />
+    <jar href="sample/poi-3.16/poi-ooxml-3.16.jar" size="1433719" download="eager" />
+    <jar href="sample/poi-3.16/poi-ooxml-schemas-3.16.jar" size="5871746" download="eager" />
+    <jar href="sample/poi-3.16/poi-scratchpad-3.16.jar" size="1384931" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="sample.Main"  name="JavaFXApp" />
+  <update check="background"/>
+</jnlp>

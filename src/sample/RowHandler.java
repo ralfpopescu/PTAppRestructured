@@ -175,25 +175,26 @@ public class RowHandler {
         ArrayList<ArrayList> all = new ArrayList<ArrayList>();
 
         all.add(MODs);
-        all.add(Servers);
-        all.add(Bartenders);
-        all.add(Barbacks);
-        all.add(Bussers);
-        all.add(Hosts);
-        all.add(Foodrunners);
-        all.add(Parking);
+        all.add(EventSales);
         all.add(Security);
+        all.add(Parking);
         all.add(Maintenance);
+        all.add(Inventory);
+        all.add(Foodrunners);
+        all.add(Bussers);
         all.add(Sushi);
         all.add(Kitchen);
         all.add(Dishwashers);
+        all.add(Bartenders);
+        all.add(Barbacks);
+        all.add(Servers);
         all.add(BanquetBartenders);
-        all.add(BanquetCooks);
         all.add(BanquetServers);
         all.add(BanquetDishwashers);
+        all.add(BanquetCooks);
+        all.add(Hosts);
         all.add(Basecamp);
-        all.add(EventSales);
-        all.add(Inventory);
+
 
         return all;
 
