@@ -16,10 +16,12 @@ import java.util.ArrayList;
 public class ExcelOrganizer
 {
     static XSSFRow row;
+    File file;
+    File file2;
     public ExcelOrganizer(){
 
     }
-    public boolean handleSheet(File file) throws Exception
+    public boolean handleSheet() throws Exception
     {
         //MOD, Server, Bartender, Barback, Busser, Host, Food Runner, Parking, Security, Maintenance, Sushi, Kitchen
         //Dishwasher, Banquet Bartender, Banquet Cook, Banquet Server, Banquet Dishwasher, Basecamp, Event Sales, Inventory
@@ -44,4 +46,22 @@ public class ExcelOrganizer
 
         return true;
     }
+
+    public void setFile1(File f){
+        file = f;
+    }
+
+    public void setFile2(File f){
+        file2 = f;
+    }
+
+    public File getFile1(){
+        return file;
+    }
+
+    public File getFile2(){
+        return file2;
+    }
+
+
 }

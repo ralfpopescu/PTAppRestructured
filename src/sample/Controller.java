@@ -25,26 +25,7 @@ public class Controller {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         File file = fileChooser.showOpenDialog(stage);
-        try {
-            success = excelOrganizer.handleSheet(file);
-        } catch (Exception e){
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle(":(");
-            alert.setHeaderText("Oops!");
-            alert.setContentText("Something went wrong.");
-
-            alert.showAndWait();
-        }
-
-
-        if(success){
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText("Success!");
-            alert.setContentText("Schedule made.");
-
-            alert.showAndWait();
-        }
+        excelOrganizer.setFile1(file);
 
 
     }
@@ -53,37 +34,25 @@ public class Controller {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         File file = fileChooser.showOpenDialog(stage);
-        try {
-            success = excelOrganizer.handleSheet(file);
-        } catch (Exception e){
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle(":(");
-            alert.setHeaderText("Oops!");
-            alert.setContentText("Something went wrong.");
-
-            alert.showAndWait();
-        }
-
-
-        if(success){
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText("Success!");
-            alert.setContentText("Schedule made.");
-
-            alert.showAndWait();
-        }
+        excelOrganizer.setFile2(file);
 
 
     }
 
     public void makeSchedule(){
         boolean success = false;
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        File file = fileChooser.showOpenDialog(stage);
+
+        if(excelOrganizer.getFile1() == null || excelOrganizer.getFile2() == null){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(":(");
+            alert.setHeaderText("Missing file!");
+            alert.setContentText("Missing one or both of the files.");
+
+            alert.showAndWait();
+        }
+
         try {
-            success = excelOrganizer.handleSheet(file);
+            success = excelOrganizer.handleSheet();
         } catch (Exception e){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle(":(");
