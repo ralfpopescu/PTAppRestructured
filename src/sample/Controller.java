@@ -48,6 +48,63 @@ public class Controller {
 
 
     }
+    public void handleSelect2(){
+        boolean success = false;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = fileChooser.showOpenDialog(stage);
+        try {
+            success = excelOrganizer.handleSheet(file);
+        } catch (Exception e){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(":(");
+            alert.setHeaderText("Oops!");
+            alert.setContentText("Something went wrong.");
+
+            alert.showAndWait();
+        }
+
+
+        if(success){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Success!");
+            alert.setContentText("Schedule made.");
+
+            alert.showAndWait();
+        }
+
+
+    }
+
+    public void makeSchedule(){
+        boolean success = false;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = fileChooser.showOpenDialog(stage);
+        try {
+            success = excelOrganizer.handleSheet(file);
+        } catch (Exception e){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(":(");
+            alert.setHeaderText("Oops!");
+            alert.setContentText("Something went wrong.");
+
+            alert.showAndWait();
+        }
+
+
+        if(success){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Success!");
+            alert.setContentText("Schedule made.");
+
+            alert.showAndWait();
+        }
+
+
+    }
 
 
     public void setStage(Stage stage){
