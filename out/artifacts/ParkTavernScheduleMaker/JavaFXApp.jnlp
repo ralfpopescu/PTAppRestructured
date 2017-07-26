@@ -8,7 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JavaFXApp.jar" size="15935365" download="eager" />
+    <jar href="JavaFXApp.jar" size="15936092" download="eager" />
+    <jar href="PTScheduleMaker2.jar" size="15935365" download="eager" />
     <jar href="ParkTavernScheduleMaker.jar" size="15927836" download="eager" />
     <jar href="sample/poi-3.16/lib/commons-codec-1.10.jar" size="284184" download="eager" />
     <jar href="sample/poi-3.16/lib/commons-collections4-4.1.jar" size="751238" download="eager" />

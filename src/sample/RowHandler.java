@@ -73,63 +73,66 @@ public class RowHandler {
             if(job.equals("MOD")){
                 MODs.add(row);
             }
-            if(job.equals("Server")){
+            else if(job.equals("Server")){
                 Servers.add(row);
             }
-            if(job.equals("Bartender")){
+            else if(job.equals("Bartender")){
                 Bartenders.add(row);
             }
-            if(job.equals("Barback")){
+            else if(job.equals("Barback")){
                 Barbacks.add(row);
             }
-            if(job.equals("Busser")){
+            else if(job.equals("Busser")){
                 Bussers.add(row);
             }
-            if(job.equals("Host")){
+            else if(job.equals("Host")){
                 Hosts.add(row);
             }
-            if(job.equals("FoodRunner")){
+            else if(job.equals("FoodRunner")){
                 Foodrunners.add(row);
             }
-            if(job.equals("Parking")){
+            else if(job.equals("Parking")){
                 Parking.add(row);
             }
-            if(job.equals("Security")){
+            else if(job.equals("Security")){
                 Security.add(row);
             }
-            if(job.equals("Maintenance")){
+            else if(job.equals("Maintenance")){
                 Maintenance.add(row);
             }
-            if(job.equals("Sushi")){
+            else if(job.equals("Sushi")){
                 Sushi.add(row);
             }
-            if(job.equals("Kitchen")){
+            else if(job.equals("Kitchen")){
                 Kitchen.add(row);
             }
-            if(job.equals("Dishwasher")){
+            else if(job.equals("Dishwasher")){
                 Dishwashers.add(row);
             }
-            if(job.equals("BanquetBartender")){
+            else if(job.equals("BanquetBartender")){
                 BanquetBartenders.add(row);
             }
-            if(job.equals("BanquetCook")){
+            else if(job.equals("BanquetCook")){
                 BanquetCooks.add(row);
             }
-            if(job.equals("BanquetServer")){
+            else if(job.equals("BanquetServer")){
                 BanquetServers.add(row);
             }
-            if(job.equals("BanquetDishwasher")){
+            else if(job.equals("BanquetDishwasher")){
                 BanquetDishwashers.add(row);
             }
-            if(job.equals("Basecamp")){
+            else if(job.equals("Basecamp")){
                 Basecamp.add(row);
             }
-            if(job.equals("EventSales")){
+            else if(job.equals("EventSales")){
                 EventSales.add(row);
             }
-            if(job.equals("Inventory")){
+            else if(job.equals("Inventory")){
                 Inventory.add(row);
+            } else {
+                System.out.println("Couldn't add job " + job);
             }
+
         }
 
     }

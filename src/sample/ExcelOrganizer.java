@@ -28,17 +28,27 @@ public class ExcelOrganizer
 
 
         FileInputStream fis = new FileInputStream(file);
+        FileInputStream fis2 = new FileInputStream(file2);
 
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet spreadsheet = workbook.getSheetAt(0);
 
+        XSSFWorkbook workbook2 = new XSSFWorkbook(fis2);
+        XSSFSheet spreadsheet2 = workbook2.getSheetAt(0);
+
         Iterator<Row> rowIterator = spreadsheet.iterator();
+        Iterator<Row> rowIterator2 = spreadsheet2.iterator();
         RowHandler rowHandler = new RowHandler();
         SheetCreator sheetCreator = new SheetCreator(rowHandler, spreadsheet.getRow(0));
 
         while (rowIterator.hasNext())
         {
             row = (XSSFRow) rowIterator.next();
+            rowHandler.determineJobs(row);
+        }
+        while (rowIterator2.hasNext())
+        {
+            row = (XSSFRow) rowIterator2.next();
             rowHandler.determineJobs(row);
         }
         sheetCreator.makeSheet();

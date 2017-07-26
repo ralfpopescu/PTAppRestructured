@@ -93,7 +93,7 @@ public class Parser {
             return "Inventory";
         }
 
-
+        System.out.println("XXX" + cell);
         return "n";
     }
 
